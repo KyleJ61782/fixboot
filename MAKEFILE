@@ -1,0 +1,28 @@
+# Borland C++ 3.1
+OBJS=fixboot.obj crc32.obj int13.obj diskinfo.obj error.obj fixntfs.obj fixall.obj
+EXENAME=fixboot.exe
+MAPNAME=fixboot.map
+
+C_OPTIONS=-O2 -ms -3 -c -d
+ASM_OPTIONS=/ml
+LINK_OPTIONS=/3 /s
+
+C=$(MAKEDIR)\bcc $(C_OPTIONS)
+ASM=$(MAKEDIR)\tasm $(ASM_OPTIONS)
+LINK=$(MAKEDIR)\tlink $(LINK_OPTIONS)
+
+RUNOBJS=C0S.OBJ
+RUNLIBS=EMU.LIB MATHS.LIB CS.LIB
+
+
+all: $(OBJS)
+    $(LINK) @&&!
+        $(RUNOBJS) $(OBJS), $(EXENAME), $(MAPNAME), $(RUNLIBS)
+!
+
+clean:
+    @del *.obj
+    @del *.map
+
+.c.obj:
+    $(C) $<

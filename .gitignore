@@ -1,0 +1,7 @@
+.vscode
+*.BAK
+*.OBJ
+*.DSK
+*.EXE
+*.MAP
+SYNC*.BAT
